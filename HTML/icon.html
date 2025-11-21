@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>icons</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body{
+            background-image: linear-gradient(-45deg,purple,green,red,blue);
+        }
+        .icons{
+            display: grid;
+            place-items: center;
+            height: 100vh;
+        }
+        .ic1{
+            animation: animate ;
+        }
+        .ic1 span{
+            display: inline-block;
+            margin: 0px 15px;
+            border-radius: 15px;
+            width: 80px;
+            height: 80px;
+            background-color: black;
+            color: whitesmoke;
+            opacity: 0.4;
+            transform: translate(0px,-50px) rotate(360deg) scale(1);
+            animation: animate 6s forwards;
+            transition:  all .6s ease  ;
+        }
+        .ic1 span i{
+            font-size: 35px;
+            line-height: 80px;
+            margin-left: 25px;
+            align-self: auto;
+        }
+        .ic1 span:hover{
+            background: white;
+            color: black;
+        }
+       .ic1 span:nth-child(2){
+        animation-delay: .3s;
+       }
+       .ic1 span:nth-child(3){
+        animation-delay: .5s;
+       }
+       .ic1 span:nth-child(4){
+        animation-delay: .7s;
+       }
+       .ic1 span:nth-child(5){
+        animation-delay: .9s;
+       }
+      
+    @keyframes animate {
+        0%{
+            transform: translate(0,-100px) rotate(90deg) scale(1);
+        }
+        50%{
+            transform: translate(0,20px) rotate(0) scale(.8);
+        }
+        100%{
+            transform: translate(0) rotate(0) scale(1);
+            opacity: 1;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="icons">
+        <div class="ic1">
+            <span><i class="fa fa-facebook"></i></span>
+            <span><i class="fa fa-youtube"></i></span>
+            <span><i class="fa fa-reddit"></i></span>
+            <span><i class="fa fa-behance"></i></span>
+            <span><i class="fa fa-instagram"></i></span>
+        </div>
+    </div>
+</body>
+</html>

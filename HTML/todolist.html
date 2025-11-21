@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+ <style>
+    
+
+.todo-list {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#task-input {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+}
+
+#add-task-btn {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.task:last-child {
+  border-bottom: none;
+}
+
+.delete-btn, .update-btn {
+  float: right;
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.update-btn {
+  background-color: #03A9F4;
+  color: #fff;
+}
+
+
+ </style>
+</head>
+<body>
+  <div class="todo-list">
+    <h1>To-Do List</h1>
+    <input id="task-input" type="text" placeholder="Enter task">
+    <button id="add-task-btn">Add Task</button>
+    <ul id="task-list"></ul>
+  </div>
+
+  <script>
+    
+
+let tasks = [];
+const taskInput = document.getElementById('task-input');
+const addTaskBtn = document.getElementById('add-task-btn');
+const taskList = document.getElementById('task-list');
+
+addTaskBtn.addEventListener('click', addTask);
+
+function addTask() {
+  const task = taskInput.value.trim();
+  if (task) {
+    tasks.push({ task, id: Date.now() });
+    taskInput.value = '';
+    renderTaskList();
+  }
+}
+
+function renderTaskList() {
+  taskList.innerHTML = '';
+  tasks.forEach((task) => {
+    const taskElement = document.createElement('li');
+    taskElement.classList.add('task');
+    taskElement.innerHTML = `
+      ${task.task}
+      <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
+      <button class="update-btn" onclick="updateTask(${task.id})">Update</button>
+    `;
+    taskList.appendChild(taskElement);
+  });
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter((task) => task.id !== id);
+  renderTaskList();
+}
+
+function updateTask(id) {
+  const task = tasks.find((task) => task.id === id);
+  const updatedTask = prompt('Enter updated task:', task.task);
+  if (updatedTask) {
+    task.task = updatedTask;
+    renderTaskList();
+  }
+}
+
+
+  </script>
+</body>
+</html>
+

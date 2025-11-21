@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation background</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+       .ab1 ul{
+        height: 40px;
+        text-align: center;
+        list-style: none;
+       }
+       .ab1 ul li a{
+        text-decoration: none;
+        color: black;
+        padding: 15px;
+        
+       }
+       .ab1 ul li{
+        display: inline-block;
+        padding: 40px 10px ;
+       }
+       .ab1 ul li a:hover{
+        background-color: black;
+        color: white;
+       }
+       .ab1 h1{
+        text-align: center;
+        margin-top: 20%;
+        margin-bottom: 40px;
+        font-size: 50px;
+       }
+       .ab1 p{
+        text-align: center;
+        font-size: smaller;
+        margin-left:30%;
+        margin-right: 30%;
+        font-size: 13px;
+       }
+       .ab1{
+        background: linear-gradient(-45deg,red,blue,green,purple); 
+        background-size: 500% ;
+        width: 100%;
+        height: 600px;
+        animation: animate 15s ease infinite;
+        z-index: 1;
+       }
+       @keyframes animate{
+        0%{
+            background-position: 0% 50%;
+        }
+        50%{
+            background-position: 100% 50%;
+        }
+        100%{
+            background-position: 0% 50%;
+        }
+        
+       }
+    </style>
+</head>
+<body>
+    <div class="ab1">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">PORTFOLIO</a></li>
+            <li><a href="#">SERVICES</a></li>
+            <li><a href="#">CONTACT</a></li>
+        </ul>
+        <h1>Animated Background</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.Blanditiis a illum nostrum placeat
+             deleniti voluptatesate culpa distinctio sapiente  Molestiae et error quas voluptatesate culpa </p>
+    </div>
+</body>
+</html>

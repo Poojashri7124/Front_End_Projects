@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form</title>
+    <style>
+        body{
+            background-color: plum;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+       
+        div.box1{
+            border-color: grey;
+            border-top-color: purple;
+            border-style: solid;  
+            border-width: 15px 2px 2px 2px; 
+            border-radius: 5px;    
+            padding: 5px 25px;
+            background-color: white;
+           
+        }
+        div.box2,div.box3,div.box4{
+            border: 1px solid grey;
+            border-radius: 5px;
+            line-height: 30px;
+            padding: 25px;
+            background-color: whitesmoke;
+            margin-top: 15px;
+
+    
+        }
+        input{
+            width: 70%;
+            box-shadow: 0px 1px grey;
+           
+            
+        }
+        a{
+            border: 1px solid gery;
+            border-radius: 3px;
+            background-color: blue;
+            color: white;
+            float: left;
+            padding: 5px 10px;
+            margin-left:5px ;
+        }
+        p.notes1{
+            margin-left:5px ;
+        }
+        p.notes2{
+            margin-left: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <h1>Open Letter Maker</h1>
+        <p>All of the submissions to this form will be appended into a table as signature in the style of an open letter</p>
+        <p style="color: red;"> *Required</p>
+    </div>
+
+    <div class="box2"> 
+        <label for="fname"><b>Full Name<span style="color: red;">*</span></b></label>
+        <p>Any text provided here will be used to create a digital signature, including honontics or degrees.</p>
+        <input type="text" id="fname" name="fname" placeholder="Your answer" style="border: none;">
+    </div>
+
+    <div class="box3">
+        <label for="dept"> <b> Department <span style="color: red;">*</span></b></label>  
+        <br>
+        <input type="text" id="dept" name="dept" placeholder="Your answer" style="border: none;">
+    </div>
+
+    <div class="box4">
+        <label for="posi"> <b>Position<span style="color: red;">*</span></b></label> 
+        <br>
+        <input type="text" id="posi" name="posi" placeholder="Your answer" style="border: none;">
+    </div>
+    <br>
+     <a>Submit</a>
+    <br>
+    <div>
+        <p class="notes1">Never submit passwords through Google Forms</p>
+        <p class="notes2">This content is neither created nor endorsed by Google. <u>Report Abuse. Terms of Service.Privacy Policy</u></p>
+        <span><i class="fa-solid fa-pencil"></i></span>
+    </div>
+</body>
+</html>

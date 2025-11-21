@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Player</title>
+ <style>
+    body {
+  background-image: url(images/musicbg.jpeg);
+  color: #fff;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.music-container {
+  text-align: center;
+  background: #222;
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.cover {
+  width: 100%;
+  border-radius: 15px;
+  margin: 15px 0;
+}
+
+.controls button {
+  font-size: 24px;
+  margin: 0 15px;
+  background: #444;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.progress-container {
+  width: 100%;
+  height: 5px;
+  background: #444;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.progress {
+  height: 100%;
+  background: #00bcd4;
+  width: 0%;
+  border-radius: 5px;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.volume {
+  margin-top: 10px;
+}
+
+ </style>
+</head>
+<body>
+  <div class="music-container">
+    <div class="music-info">
+      <h2 id="title">Title</h2>
+      <h3 id="artist">Artist</h3>
+    </div>
+    <img src="images/cover1.jpg" id="cover" class="cover" alt="cover"/>
+    <audio id="audio" src="music/song1.mp3"></audio>
+
+    <div class="controls">
+      <button id="prev">⏮️</button>
+      <button id="play">▶️</button>
+      <button id="next">⏭️</button>
+    </div>
+
+    <div class="progress-container" id="progress-container">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="time">
+      <span id="current-time">1:00</span>
+      <span id="duration">4:00</span>
+    </div>
+
+    <div class="volume">
+      Volume: <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+    </div>
+  </div>
+<script>
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("play");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const title = document.getElementById("title");
+const artist = document.getElementById("artist");
+const cover = document.getElementById("cover");
+const progressContainer = document.getElementById("progress-container");
+const progress = document.getElementById("progress");
+const currentTimeEl = document.getElementById("current-time");
+const durationEl = document.getElementById("duration");
+const volumeSlider = document.getElementById("volume");
+
+// Playlist
+const songs = [
+  {
+    name: "song1",
+    displayName: "First Song",
+    artist: "Artist One",
+    cover: "images/cover1.jpg"
+  },
+  {
+    name: "song2",
+    displayName: "Second Song",
+    artist: "Artist Two",
+    cover: "images/cover2.jpg"
+  }
+];
+
+let songIndex = 0;
+
+// Load song
+function loadSong(song) {
+  title.textContent = song.displayName;
+  artist.textContent = song.artist;
+  audio.src = `music/${song.name}.mp3`;
+  cover.src = song.cover;
+}
+loadSong(songs[songIndex]);
+
+// Play
+function playSong() {
+  audio.play();
+  playBtn.textContent = "⏸️";
+}
+
+// Pause
+function pauseSong() {
+  audio.pause();
+  playBtn.textContent = "▶️";
+}
+
+let isPlaying = false;
+playBtn.addEventListener("click", () => {
+  isPlaying ? pauseSong() : playSong();
+  isPlaying = !isPlaying;
+});
+
+// Next
+function nextSong() {
+  songIndex = (songIndex + 1) % songs.length;
+  loadSong(songs[songIndex]);
+  playSong();
+  isPlaying = true;
+}
+
+// Prev
+function prevSong() {
+  songIndex = (songIndex - 1 + songs.length) % songs.length;
+  loadSong(songs[songIndex]);
+  playSong();
+  isPlaying = true;
+}
+
+nextBtn.addEventListener("click", nextSong);
+prevBtn.addEventListener("click", prevSong);
+
+// Progress bar
+function updateProgress(e) {
+  const { duration, currentTime } = e.srcElement;
+  const percent = (currentTime / duration) * 100;
+  progress.style.width = `${percent}%`;
+
+  // Format time
+  function formatTime(t) {
+    const minutes = Math.floor(t / 60);
+    const seconds = Math.floor(t % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+  }
+
+  currentTimeEl.textContent = formatTime(currentTime);
+  durationEl.textContent = formatTime(duration);
+}
+
+audio.addEventListener("timeupdate", updateProgress);
+
+// Seek
+progressContainer.addEventListener("click", (e) => {
+  const width = progressContainer.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+  audio.currentTime = (clickX / width) * duration;
+});
+
+// Volume control
+volumeSlider.addEventListener("input", () => {
+  audio.volume = volumeSlider.value;
+});
+
+// Autoplay next song
+audio.addEventListener("ended", nextSong);
+</script>
+</body>
+</html>

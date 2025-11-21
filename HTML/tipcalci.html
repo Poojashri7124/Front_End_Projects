@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <style>
+        .d1{
+            width: 40%;
+            padding: 10px;
+            border: 3px solid rebeccapurple;
+            border-radius: 40px;
+            line-height: 30px;
+            padding: 20px;
+            margin-left: 30%;
+            margin-top: 10%;
+            background: linear-gradient(-45deg,plum,lightblue,lightgreen,plum);
+        }
+        .d1 button{
+            color:black;
+            background-color: palevioletred;
+            font-size: 20px;
+            border-radius: 5px;
+            width: 90%;
+            margin-left: 20px;
+            padding: 10px;
+             background: linear-gradient(-45deg,red,yellow,green,purple);
+        }
+        .d1 input{
+            width: 80%;
+            height: 30px;
+            box-shadow: 0 0 20px 0;
+            margin-left: 20px;
+        }   
+        
+    </style>
+</head>
+<body>
+    <div class="d1">
+        <h2>TIP CALCULATOR</h2>
+        <p>Enter the amount add tip percentage to calculate the total.</p>
+        <label for="BillAmount">Bill Amount</label> <br>
+        <input type="number" id="Bill"> <br>
+        <label for="TipPercent">Tip Percent</label> <br>
+        <input type="number" id="Tip"> <br>
+        <br>
+        <button id="calculatebtn">Calculate</button> <br>
+       <label for="total">Total</label>
+       <span id="total"></span>
+
+    </div>
+    <script>
+    const bill = document.getElementById("Bill");
+const tip = document.getElementById("Tip");
+const calculate = document.getElementById("calculatebtn");
+const totalSpan = document.getElementById("total");
+calculate.addEventListener("click",calculateTotal)
+function calculateTotal(){
+    const billInput = bill.value;
+    const tipInput = tip.value;
+    const TotalValue = billInput * ( 1+ tipInput/100);
+    totalSpan.innerText = TotalValue.toFixed(2);
+    
+}
+
+    </script>
+</body>
+</html>
